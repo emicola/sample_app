@@ -7,9 +7,13 @@ describe "StaticPages" do
 		visit 'http://localhost:3000/static_pages/home'
 		page.should have_selector('h1', :text =>'Sample App')
 		end
-		it "should have the Right title" do
+		it "should have the base title" do
 		visit 'http://localhost:3000/static_pages/home'
-		page.should have_selector('title', :text => 'Titolo Sample App |Home')
+		page.should have_selector('title', :text => 'Titolo Sample App')
+		end
+		it "should not have have a custome page title" do
+		visit '/static_pages/home'
+		page.should_not have_selector('title', :text => '| Home')
 		end
 	end
 
@@ -20,7 +24,7 @@ describe "StaticPages" do
 		end
 		it "should have the Right title" do
 		visit 'http://localhost:3000/static_pages/help'
-		page.should have_selector('title', :text => 'Titolo Sample App |Help')
+		page.should have_selector('title', :text => 'Titolo Sample App | Help')
 		end
 	end
 	
@@ -31,7 +35,7 @@ describe "StaticPages" do
 		end
 		it "should have the Right title" do
 		visit 'http://localhost:3000/static_pages/about'
-		page.should have_selector('title', :text => 'Titolo Sample App |About us')
+		page.should have_selector('title', :text => 'Titolo Sample App | About us')
 		end
 	end
 	describe "Contact page" do
@@ -41,7 +45,7 @@ describe "StaticPages" do
 		end
 		it "should have the Right title" do
 		visit 'http://localhost:3000/static_pages/contact'
-		page.should have_selector('title', :text => 'Titolo Sample App |Contact')
+		page.should have_selector('title', :text => 'Titolo Sample App | Contact')
 		end
 	end
 end
